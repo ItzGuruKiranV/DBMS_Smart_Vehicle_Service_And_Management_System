@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">📊 Dashboard Overview</h2>
+
+  <div class="row text-center">
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm border-primary">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Total Vehicles</h5>
+          <h2 class="fw-bold">{{ stats.vehicles }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm border-success">
+        <div class="card-body">
+          <h5 class="card-title text-success">Total Payments</h5>
+          <h2 class="fw-bold">{{ stats.payments }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm border-warning">
+        <div class="card-body">
+          <h5 class="card-title text-warning">Total Collected (₹)</h5>
+          <h2 class="fw-bold">{{ stats.total_collected }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <p class="text-center text-muted mt-4">
+    Manage your <a href="{{ url_for('vehicles') }}">Vehicles</a> and <a href="{{ url_for('payments') }}">Payments</a> easily from the menu.
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+/* --- General Page Layout --- */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header --- */
+header {
+  background-color: #007bff;
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h3 {
+  font-weight: 600;
+}
+
+/* --- Navbar links --- */
+header nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 1rem;
+  transition: color 0.2s ease;
+}
+
+header nav a:hover {
+  color: #ffd43b;
+}
+
+/* --- Main container --- */
+main.container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+
+/* --- Table styling --- */
+table.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table-dark th {
+  background-color: #212529 !important;
+}
+
+/* --- Buttons --- */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8rem 0;
+  font-size: 0.9rem;
+  margin-top: auto;
+}

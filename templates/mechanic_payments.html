@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Payments for Mechanic {{ mec_id }}</h2>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Mechanic Name</th>
+      <th>Transaction ID</th>
+      <th>Amount</th>
+      <th>Status</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in payments %}
+    <tr>
+      <td>{{ p.Mechanic_Name }}</td>
+      <td>{{ p.Trans_id }}</td>
+      <td>{{ p.Amount }}</td>
+      <td>{{ p.Status }}</td>
+      <td>{{ p.Timestamp }}</td>
+    </tr>
+    {% endfor %}
+    {% if payments|length == 0 %}
+    <tr><td colspan="5" class="text-center">No payments found.</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+
+{% if totals %}
+  <div class="alert alert-success mt-3">
+    Total received (Completed): <strong>{{ totals[0].Total_Amount_Received }}</strong>
+  </div>
+{% endif %}
+{% endblock %}

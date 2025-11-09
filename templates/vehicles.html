@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Vehicles</h2>
+
+<form class="row g-2 mb-3" method="get" action="{{ url_for('vehicles') }}">
+  <div class="col-auto">
+    <input class="form-control" name="q" placeholder="Search by model or vehicle no" value="{{ q }}">
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary">Search</button>
+  </div>
+  <div class="col-auto">
+    <a class="btn btn-success" href="{{ url_for('add_vehicle') }}">Add Vehicle</a>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Owner ID</th>
+      <th>License</th>
+      <th>Model</th>
+      <th>Milage</th>
+      <th>V_no</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for v in vehicles %}
+    <tr>
+      <td>{{ v.V_id }}</td>
+      <td>{{ v.Owner_id }}</td>
+      <td>{{ v.License }}</td>
+      <td>{{ v.Model }}</td>
+      <td>{{ v.Milage }}</td>
+      <td>{{ v.V_no }}</td>
+      <td>
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('vehicle_detail', v_id=v.V_id) }}">Details</a>
+        <form style="display:inline" method="post" action="{{ url_for('delete_vehicle', v_id=v.V_id) }}" onsubmit="return confirm('Delete vehicle?');">
+          <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    {% if vehicles|length == 0 %}
+    <tr><td colspan="7" class="text-center">No vehicles found.</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}

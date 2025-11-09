@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Vehicle</h2>
+<form method="post" action="{{ url_for('add_vehicle') }}" class="row g-3">
+  <div class="col-md-2">
+    <label class="form-label">Owner ID</label>
+    <input type="number" name="owner_id" class="form-control" required>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">License</label>
+    <input type="text" name="license" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Model</label>
+    <input type="text" name="model" class="form-control" required>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Milage</label>
+    <input type="number" name="milage" class="form-control" required>
+  </div>
+  <div class="col-md-2">
+    <label class="form-label">Vehicle No</label>
+    <input type="text" name="v_no" class="form-control" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Add</button>
+    <a href="{{ url_for('vehicles') }}" class="btn btn-secondary">Cancel</a>
+  </div>
+</form>
+{% endblock %}

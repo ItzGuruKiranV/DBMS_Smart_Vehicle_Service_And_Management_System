@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="display-6">Welcome to Vehicle Service Management System</h1>
+    <p class="lead">View and manage vehicles, payments, mechanics and service history.</p>
+    <a href="{{ url_for('vehicles') }}" class="btn btn-primary">View Vehicles</a>
+    <a href="{{ url_for('payments') }}" class="btn btn-secondary">View Payments</a>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Quick Actions</h5>
+        <a href="{{ url_for('add_vehicle') }}" class="btn btn-outline-primary mb-2 w-100">Add Vehicle</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-success w-100">View Dashboard</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

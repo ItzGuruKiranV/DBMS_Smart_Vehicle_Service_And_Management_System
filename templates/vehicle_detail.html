@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+{% if vehicle %}
+  <h2>Vehicle #{{ vehicle.V_no }} Details</h2>
+  <dl class="row">
+    <dt class="col-sm-3">Owner ID</dt><dd class="col-sm-9">{{ vehicle.Owner_id }}</dd>
+    <dt class="col-sm-3">License</dt><dd class="col-sm-9">{{ vehicle.License }}</dd>
+    <dt class="col-sm-3">Model</dt><dd class="col-sm-9">{{ vehicle.Model }}</dd>
+    <dt class="col-sm-3">Milage</dt><dd class="col-sm-9">{{ vehicle.Milage }}</dd>
+  </dl>
+
+  <h4>Service History</h4>
+  <table class="table table-bordered">
+    <thead class="table-secondary">
+      <tr>
+        <th>Service Center</th>
+        <th>Service Type</th>
+        <th>Service Date</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in services %}
+      <tr>
+        <td>{{ s.Service_Center }}</td>
+        <td>{{ s.Service_Type }}</td>
+        <td>{{ s.Service_date }}</td>
+        <td>{{ s.Cost }}</td>
+      </tr>
+      {% endfor %}
+      {% if services|length == 0 %}
+      <tr><td colspan="4" class="text-center">No service records.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% else %}
+  <p class="text-danger">Vehicle not found.</p>
+{% endif %}
+{% endblock %}
