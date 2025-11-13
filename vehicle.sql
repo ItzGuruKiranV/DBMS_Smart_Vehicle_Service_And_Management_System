@@ -351,3 +351,103 @@ USE vehicle;
 
 USE vehicle;
 SHOW TABLES;
+
+DESCRIBE vehicle;
+DESCRIBE payments;
+ALTER TABLE payments 
+ADD COLUMN Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+SHOW PROCEDURE STATUS WHERE Db = 'vehicle';
+SHOW TABLES;
+USE vehicle;
+
+USE vehicle;
+
+-- Step 1: Create a new MySQL user for Flask app
+CREATE USER 'vehicle_user'@'localhost' IDENTIFIED BY 'Vehicle@123';
+
+-- Step 2: Grant privileges on vehicle database
+GRANT SELECT, INSERT, UPDATE, DELETE, EXECUTE ON vehicle.* TO 'vehicle_user'@'localhost';
+FLUSH PRIVILEGES;
+
+-- Step 3: Create App_User table
+CREATE TABLE IF NOT EXISTS App_User (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user'
+);
+
+-- Step 4: Insert sample accounts
+INSERT INTO App_User (username, password_hash, role)
+VALUES 
+('admin', SHA2('admin123', 256), 'admin'),
+('john', SHA2('john123', 256), 'user'),
+('jane', SHA2('jane123', 256), 'user');
+
+-- Step 5: Verify setup
+SHOW TABLES;
+SELECT * FROM App_User;
+SHOW GRANTS FOR 'vehicle_user'@'localhost';
+
+USE vehicle;
+
+-- Check for triggers
+SHOW TRIGGERS;
+
+-- Check for functions
+SHOW FUNCTION STATUS WHERE Db = 'vehicle';
+
+-- Check for procedures
+SHOW PROCEDURE STATUS WHERE Db = 'vehicle';
+
+-- Check for views
+SHOW FULL TABLES WHERE Table_type = 'VIEW';
+SHOW CREATE TRIGGER trigger_name;
+SHOW CREATE FUNCTION function_name;
+SHOW CREATE PROCEDURE procedure_name;
+SHOW CREATE VIEW view_name;
+USE vehicle;
+SHOW TRIGGERS;
+USE vehicle;
+DROP TABLE IF EXISTS users;
+USE vehicle;
+SHOW TABLES;
+
+SELECT Record_id FROM service_record;
+INSERT INTO payment (Record_id, Mec_id, Amount, UPI, Credit_card, Timestamp, Status)
+VALUES (3, 1, 1000, 'upi@bank', NULL, NOW(), 'Completed');
+
+INSERT INTO service_record (Vehicle_id, Service_Type_id, Service_Date, Cost, Status)
+VALUES (1, 1, CURDATE(), 500, 'Completed');
+DESCRIBE service_record;
+SELECT * FROM service_record;
+INSERT INTO payment (Record_id, Mec_id, Amount, UPI, Credit_card, Timestamp, Status)
+VALUES (1, 1, 1000, 'upi@bank', NULL, NOW(), 'Completed');
+SELECT * FROM payment;
+
+CREATE TABLE app_user (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    email VARCHAR(100),
+    role ENUM('admin', 'user') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO app_user (username, password_hash, email, role)
+VALUES ('admin', 'scrypt:32768:8:1$3YYv2fKOOLed7ISd$0476aa35cb3902ffa048482cbaed24b230b8d007c0ea2620d24a82b20120588576e2f762b82914e18933a9bb6269fedf3b2c290c261ee86b648ee75f8b8f090e', 'admin@example.com', 'admin');
+SELECT username, password_hash, role FROM app_user;
+DESCRIBE app_user;
+SELECT * FROM app_user;
+INSERT INTO app_user (username, password_hash, email, role)
+VALUES (
+  'john',
+  'scrypt:32768:8:1$3YYv2fKOOLed7ISd$0476aa35cb3902ffa048482cbaed24b230b8d007c0ea2620d24a82b20120588576e2f762b82914e18933a9bb6269fedf3b2c290c261ee86b648ee75f8b8f090e',
+  'john@example.com',
+  'user'
+);
+USE vehicle;
+SHOW FUNCTION STATUS WHERE Db = 'vehicle';
+
+USE vehicle;
+SELECT total_service_cost(1);
