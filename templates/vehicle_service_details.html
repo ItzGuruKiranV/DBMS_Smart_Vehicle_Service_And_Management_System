@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Service Details for Vehicle #{{ vehicle_id }}</h2>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Owner Name</th>
+      <th>Vehicle Number</th>
+      <th>Service Center</th>
+      <th>Mechanic Name</th>
+      <th>Service Type</th>
+      <th>Service Date</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in services %}
+    <tr>
+      <td>{{ s.Owner_Name }}</td>
+      <td>{{ s.Vehicle_Number }}</td>
+      <td>{{ s.Service_Center }}</td>
+      <td>{{ s.Mechanic_Name }}</td>
+      <td>{{ s.Service_Type }}</td>
+      <td>{{ s.Service_date }}</td>
+      <td>{{ s.Cost }}</td>
+    </tr>
+    {% endfor %}
+    {% if services|length == 0 %}
+    <tr><td colspan="7" class="text-center">No service records found.</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+
+<a href="{{ url_for('vehicles') }}" class="btn btn-secondary mt-3">← Back to Vehicles</a>
+{% endblock %}

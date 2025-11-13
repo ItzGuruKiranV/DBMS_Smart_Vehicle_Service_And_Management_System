@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">💰 Total Service Cost</h2>
+
+  <form method="post" class="d-flex justify-content-center mb-4">
+    <input type="number" name="vehicleId" class="form-control w-25 me-2" placeholder="Enter Vehicle ID" required>
+    <button type="submit" class="btn btn-success">Calculate</button>
+  </form>
+
+  {% if total_cost is not none %}
+  <div class="alert alert-success text-center w-50 mx-auto">
+    <h5>Vehicle ID: <strong>{{ vehicle_id }}</strong></h5>
+    <p class="mb-0">Total Service Cost: <strong>₹{{ total_cost }}</strong></p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
